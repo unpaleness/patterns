@@ -16,11 +16,13 @@ class Animal {
 
 class Dog : public Animal {
  public:
+  Dog() { std::cout << "Constructing Dog\n"; }
   virtual std::string get_phrase() const override final { return "I'm a dog!"; }
 };
 
 class Cat : public Animal {
  public:
+  Cat() { std::cout << "Constructing Cat\n"; }
   virtual std::string get_phrase() const override final { return "I'm a cat!"; }
 };
 
@@ -30,12 +32,14 @@ class AnimalCreator {
   virtual std::shared_ptr<Animal> factory_method() const = 0;
   void ask_animal() const {
     const auto animal_ptr = factory_method();
+    std::cout << "Asking animal\n";
     std::cout << "The animal says: " << animal_ptr->get_phrase() << '\n';
   }
 };
 
 class DogCreator : public AnimalCreator {
  public:
+  DogCreator() { std::cout << "Constructing DogCreator\n"; }
   virtual std::shared_ptr<Animal> factory_method() const override final {
     return std::make_shared<Dog>();
   }
@@ -43,6 +47,7 @@ class DogCreator : public AnimalCreator {
 
 class CatCreator : public AnimalCreator {
  public:
+  CatCreator() { std::cout << "Constructing CatCreator\n"; }
   virtual std::shared_ptr<Animal> factory_method() const override final {
     return std::make_shared<Cat>();
   }
@@ -60,7 +65,7 @@ void ClientCode(const AnimalCreator& creator) {
 }  // namespace
 
 void run() {
-  std::cout << "=== Factory method (virtual constructor) ===" << '\n';
+  std::cout << "\n=== Factory method ===\n";
   const auto dog_creator = std::make_shared<DogCreator>();
   ClientCode(*dog_creator);
   const auto cat_creator = std::make_shared<CatCreator>();

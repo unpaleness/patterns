@@ -1,12 +1,10 @@
 cmake_minimum_required(VERSION 3.10)
 
+# specify the C++ compiler flags
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -O2 -std=c++17")
+
 # set the project name
 project(patterns)
-
-# specify the C++ standard
-set(CMAKE_C_COMPILER gcc)
-set(CMAKE_CXX_COMPILER g++)
-set(CMAKE_CXX_FLAGS "-Wall -Wextra -O2 -std=c++17")
 
 # add library from source files
 add_library(lib_methods
