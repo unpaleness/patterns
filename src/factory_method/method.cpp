@@ -11,29 +11,34 @@ namespace {
 class Animal {
  public:
   virtual ~Animal() {}
-  virtual std::string get_phrase() const = 0;
+  virtual void some_operation() const = 0;
 };
 
 class Dog : public Animal {
  public:
   Dog() { std::cout << "Constructing Dog\n"; }
-  virtual std::string get_phrase() const override final { return "I'm a dog!"; }
+  virtual void some_operation() const override final {
+    std::cout << "Wow-wow!\n";
+  }
 };
 
 class Cat : public Animal {
  public:
   Cat() { std::cout << "Constructing Cat\n"; }
-  virtual std::string get_phrase() const override final { return "I'm a cat!"; }
+  virtual void some_operation() const override final {
+    std::cout << "Meow-meow!\n";
+  }
 };
 
 class AnimalCreator {
  public:
   virtual ~AnimalCreator() {}
   virtual std::shared_ptr<Animal> factory_method() const = 0;
-  void ask_animal() const {
+  void some_operation() const {
+    std::cout << "AnimalCreator creates an Animal\n";
     const auto animal_ptr = factory_method();
-    std::cout << "Asking animal\n";
-    std::cout << "The animal says: " << animal_ptr->get_phrase() << '\n';
+    std::cout << "AnimalCreator makes some operation on Animal\n";
+    animal_ptr->some_operation();
   }
 };
 
@@ -53,13 +58,9 @@ class CatCreator : public AnimalCreator {
   }
 };
 
-/**
- * Клиентский код работает с экземпляром конкретного создателя, хотя и через его
- * базовый интерфейс. Пока клиент продолжает работать с создателем через базовый
- * интерфейс, вы можете передать ему любой подкласс создателя.
- */
 void ClientCode(const AnimalCreator& creator) {
-  creator.ask_animal();
+  std::cout << "Client makes some operation on AnimalCreator\n";
+  creator.some_operation();
 }
 
 }  // namespace
