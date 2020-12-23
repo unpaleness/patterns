@@ -9,4 +9,9 @@
 5. `cd ..`
 
 ## run
+
 `./build/patterns.exe` (use git-bash for color output)
+
+## clang-format
+
+`./smart-clang-format.sh` (use git-bash)
