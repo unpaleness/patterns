@@ -1,9 +1,9 @@
 #include "pattern.hpp"
 
-#include <square.hpp>
-
 #include <iostream>
 #include <memory>
+
+#include <shapes.hpp>
 
 namespace factory_method {
 
@@ -20,7 +20,7 @@ class SquareCreator {
   }
 
  protected:
-  virtual std::shared_ptr<const Square> factory_method() const = 0;
+  virtual std::shared_ptr<const shapes::Square> factory_method() const = 0;
 };
 
 class RedSquareCreator : public SquareCreator {
@@ -28,8 +28,9 @@ class RedSquareCreator : public SquareCreator {
   RedSquareCreator() { std::cout << "Constructing RedSquareCreator\n"; }
 
  private:
-  virtual std::shared_ptr<const Square> factory_method() const override final {
-    return std::make_shared<RedSquare>();
+  virtual std::shared_ptr<const shapes::Square> factory_method()
+      const override final {
+    return std::make_shared<shapes::RedSquare>();
   }
 };
 
@@ -38,8 +39,9 @@ class GreenSquareCreator : public SquareCreator {
   GreenSquareCreator() { std::cout << "Constructing GreenSquareCreator\n"; }
 
  private:
-  virtual std::shared_ptr<const Square> factory_method() const override final {
-    return std::make_shared<GreenSquare>();
+  virtual std::shared_ptr<const shapes::Square> factory_method()
+      const override final {
+    return std::make_shared<shapes::GreenSquare>();
   }
 };
 

@@ -2,4 +2,4 @@
 include_directories(include)
 
 # add libraries from source files
-add_library(common src/square.cpp)
+add_library(common src/shapes.cpp)
