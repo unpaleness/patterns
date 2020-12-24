@@ -1,6 +1,6 @@
 #include "pattern.hpp"
 
-#include <common/square.hpp>
+#include <square.hpp>
 
 #include <iostream>
 #include <memory>

@@ -1,4 +1,4 @@
-#include "square.hpp"
+#include <square.hpp>
 
 #include <iostream>
 

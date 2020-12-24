@@ -7,20 +7,16 @@ set(CMAKE_CXX_FLAGS "-Wall -Wextra -O2 -std=c++17")
 project(patterns)
 
 #set include directories
-include_directories(src)
+include_directories(common/include)
 
 # add libraries from source files
-add_library(common src/common/square.cpp)
+add_library(common common/src/square.cpp)
 
-add_library(abstract_factory src/abstract_factory/pattern.cpp)
-add_library(factory_method src/factory_method/pattern.cpp)
-
-# add the executable
-add_executable(patterns src/main.cpp)
+# add executables
+add_executable(abstract_factory abstract_factory/src/main.cpp abstract_factory/src/pattern.cpp)
+add_executable(factory_method factory_method/src/main.cpp factory_method/src/pattern.cpp)
 
 # link libraries
 target_link_libraries(abstract_factory common)
 target_link_libraries(factory_method common)
-
-target_link_libraries(patterns factory_method abstract_factory)
 
