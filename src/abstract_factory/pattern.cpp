@@ -44,6 +44,7 @@ class GreenTriangle : public Triangle {
 
 class Factory {
  public:
+  virtual ~Factory() {}
   virtual std::shared_ptr<const Triangle> CreateTriangle() const = 0;
   virtual std::shared_ptr<const Square> CreateSquare() const = 0;
 };
