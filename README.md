@@ -2,15 +2,16 @@
 
 ## build
 
-1. `mkdir build`
-2. `cd build`
-3. `cmake -G"MinGW Makefiles" -S . -B build`
-4. `cmake --build build`
-5. `cd ..`
+1. Generating
+    * Windows: `cmake -G"MinGW Makefiles" -S . -B build`
+    * Unix: `cmake -G"Unix Makefiles" -S . -B build`
+1. Building
+    * single pattern: `cmake --build build/{pattern_name}`
+    * all patterns at once: `cmake --build build`
 
 ## run
 
-`./build/patterns.exe` (use git-bash for color output)
+`./build/{pattern_name}/{pattern_name}.exe` (use git-bash for color output)
 
 ## clang-format
 
