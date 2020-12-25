@@ -20,7 +20,7 @@ class Builder {
   std::unique_ptr<shapes::Figure> GetFigure() {
     auto finished_figure_ptr = std::move(figure_);
     Reset();
-    return std::move(finished_figure_ptr);
+    return finished_figure_ptr;
   }
 
  protected:

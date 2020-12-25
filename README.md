@@ -1,18 +1,37 @@
 # Software design patterns in C++
 
-## build
+## Generate
 
-1. Generating
-    * Windows: `cmake -G"MinGW Makefiles" -S . -B build`
-    * Unix: `cmake -G"Unix Makefiles" -S . -B build`
-1. Building
-    * single pattern: `cmake --build build/{pattern_name}`
-    * all patterns at once: `cmake --build build`
+### Unix
 
-## run
+`cmake -G"Unix Makefiles" -DCMAKE_CXX_COMPILER=clang++ -S . -B build`
+
+### Windows
+
+`cmake -G"MinGW Makefiles" -S . -B build`
+
+## Build
+
+### Single pattern
+
+`cmake --build build/{pattern_name}`
+
+### All patterns
+
+`cmake --build build`
+
+## Run
+
+### Unix
+
+`./build/{pattern_name}/{pattern_name}`
+
+### Windows
 
 `./build/{pattern_name}/{pattern_name}.exe` (use git-bash for color output)
 
-## clang-format
+## Utils
 
-`./smart-clang-format.sh` (use git-bash)
+### Format all .hpp and .cpp files in project
+
+`./smart-clang-format.sh`
