@@ -34,7 +34,7 @@ std::mutex Singleton::mutex_;
 std::shared_ptr<Singleton> Singleton::GetInstance(const size_t value) {
   std::lock_guard<std::mutex> lock(mutex_);
   if (!singleton_ptr_) {
-    singleton_ptr_ = std::make_shared<>(value);
+    singleton_ptr_ = std::make_shared<Singleton>(value);
   }
   return singleton_ptr_;
 }
