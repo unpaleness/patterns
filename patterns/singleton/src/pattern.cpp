@@ -4,6 +4,7 @@
 #include <chrono>
 #include <iostream>
 #include <memory>
+#include <mutex>
 #include <thread>
 
 namespace singleton {
@@ -14,7 +15,7 @@ class Singleton {
  public:
   Singleton(const Singleton& other) = delete;
   void operator=(const Singleton& other) = delete;
-  static std::shared_ptr<Singleton> GetInstance();
+  static std::shared_ptr<Singleton> GetInstance(const size_t value);
   size_t GetValue() const { return value_; }
 
  private:
