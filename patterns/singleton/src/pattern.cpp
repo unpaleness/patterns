@@ -18,7 +18,7 @@ class Singleton {
   static std::shared_ptr<Singleton> GetInstance(const size_t value);
   size_t GetValue() const { return value_; }
 
- private:
+ protected:
   Singleton(const size_t value) : value_(value) {
     std::cout << "Constructing Singleton with value " << value_ << '\n';
   }
