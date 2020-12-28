@@ -6,13 +6,19 @@
 
 `cmake -G"Unix Makefiles" -DCMAKE_CXX_COMPILER=clang++ -S . -B build`
 
-### Windows
+### Windows (assume you have VS building suite)
 
-`cmake -G"MinGW Makefiles" -S . -B build`
+`cmake -S . -B build`
 
 ## Build
 
 ### Single pattern
+
+#### Windows
+
+`cmake --build build` --target {pattern_name}
+
+#### Unix
 
 `cmake --build build/{pattern_name}`
 
@@ -24,14 +30,14 @@
 
 ### Unix
 
-`./build/{pattern_name}/{pattern_name}`
+`./build/bin/{pattern_name}`
 
 ### Windows
 
-`./build/{pattern_name}/{pattern_name}.exe` (use git-bash for color output)
+`.\build\bin\{BuildType}\{pattern_name}.exe`
 
 ## Utils
 
-### Format all .hpp and .cpp files in project
+### Format all .hpp and .cpp files in project (Unix-only)
 
 `./smart-clang-format.sh`

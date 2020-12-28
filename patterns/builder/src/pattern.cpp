@@ -30,7 +30,7 @@ class Builder {
 class GreenFramedTriangleBuilder final : public Builder {
  public:
   GreenFramedTriangleBuilder() : Builder() {
-    std::cout << "Constructing GreenFramedTriangleBuilder\n";
+    std::wcout << "Constructing GreenFramedTriangleBuilder\n";
   }
   virtual void Form() const override final {
     figure_->SetShape(shapes::Shape::kTriangle);
@@ -46,7 +46,7 @@ class GreenFramedTriangleBuilder final : public Builder {
 class RedDoubleFramedSquareBuilder final : public Builder {
  public:
   RedDoubleFramedSquareBuilder() : Builder() {
-    std::cout << "Constructing RedDoubleFramedSquareBuilder\n";
+    std::wcout << "Constructing RedDoubleFramedSquareBuilder\n";
   }
   virtual void Form() const override final {
     figure_->SetShape(shapes::Shape::kSquare);
@@ -61,7 +61,7 @@ class RedDoubleFramedSquareBuilder final : public Builder {
 
 class Director final {
  public:
-  Director() { std::cout << "Constructing Director\n"; }
+  Director() { std::wcout << "Constructing Director\n"; }
   void SetBuilder(std::shared_ptr<Builder> builder) { builder_ = builder; }
   void BuildDefaultShape() {}
   void BuildOnlyFormedShape() { builder_->Form(); }
@@ -79,16 +79,16 @@ class Director final {
 void ClientCode(std::shared_ptr<Director> director,
                 std::shared_ptr<Builder> builder) {
   director->SetBuilder(builder);
-  std::cout << "Client tells director to build default shape\n";
+  std::wcout << "Client tells director to build default shape\n";
   director->BuildDefaultShape();
   builder->GetFigure()->draw();
-  std::cout << "Client tells director to build only formed shape\n";
+  std::wcout << "Client tells director to build only formed shape\n";
   director->BuildOnlyFormedShape();
   builder->GetFigure()->draw();
-  std::cout << "Client tells director to build only colored shape\n";
+  std::wcout << "Client tells director to build only colored shape\n";
   director->BuildOnlyColoredShape();
   builder->GetFigure()->draw();
-  std::cout << "Client tells director to build full shape\n";
+  std::wcout << "Client tells director to build full shape\n";
   director->BuildFullShape();
   builder->GetFigure()->draw();
 }
@@ -96,13 +96,13 @@ void ClientCode(std::shared_ptr<Director> director,
 }  // namespace
 
 void run() {
-  std::cout << "\n=== Builder ===\n\n";
+  std::wcout << "\n=== Builder ===\n\n";
   auto director = std::make_shared<Director>();
-  std::cout << "Client uses green framed triangle builder\n";
+  std::wcout << "Client uses green framed triangle builder\n";
   ClientCode(director, std::make_shared<GreenFramedTriangleBuilder>());
-  std::cout << "Client uses red double framed square builder\n";
+  std::wcout << "Client uses red double framed square builder\n";
   ClientCode(director, std::make_shared<RedDoubleFramedSquareBuilder>());
-  std::cout << '\n';
+  std::wcout << '\n';
 }
 
 }  // namespace builder
