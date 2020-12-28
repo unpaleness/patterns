@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.19)
+cmake_minimum_required(VERSION 3.12)
 
 # specify the C++ compiler flags
 set(CMAKE_CXX_FLAGS "-Wall -Wextra -O2 -std=c++17")

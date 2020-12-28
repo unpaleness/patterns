@@ -39,21 +39,27 @@ const Singleton* Singleton::GetInstance(const size_t value) {
   return singleton_ptr_;
 }
 
-void UseSingleton(const size_t thread_index) {
-  std::this_thread::sleep_for(std::chrono::milliseconds(10));
+void UseSingleton(const size_t thread_index,
+                  std::shared_ptr<std::mutex> client_mutex) {
+  std::this_thread::sleep_for(std::chrono::milliseconds(100));
   const auto value = Singleton::GetInstance(thread_index)->GetValue();
-  std::cout << "Thread: " << thread_index << ", Singleton value: " << value
-            << '\n';
+  {
+    std::lock_guard<std::mutex> lock(*client_mutex);
+    std::cout << "Thread: " << thread_index << ", Singleton value: " << value
+              << '\n';
+  }
 }
 
 void ClientCode() {
-  static const size_t amount_of_threads{10};
+  static const size_t amount_of_threads{4};
+  auto client_mutex = std::make_shared<std::mutex>();
   std::cout << "Client creates " << amount_of_threads
             << " threads, all threads use singleton. Singleton will be "
                "initialized only in one of them.\n";
   std::array<std::unique_ptr<std::thread>, amount_of_threads> threads;
   for (size_t i = 0; i < amount_of_threads; ++i) {
-    threads[i] = std::make_unique<std::thread>(UseSingleton, i + 1);
+    threads[i] =
+        std::make_unique<std::thread>(UseSingleton, i + 1, client_mutex);
   }
   for (auto& thread : threads) {
     thread->join();
