@@ -9,5 +9,7 @@ int main() {
   windows::Init();
 #endif
 
+  factory_method::run();
+
   return 0;
 }

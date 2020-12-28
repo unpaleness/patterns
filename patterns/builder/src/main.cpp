@@ -9,5 +9,7 @@ int main() {
   windows::Init();
 #endif
 
+  builder::run();
+
   return 0;
 }

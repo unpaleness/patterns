@@ -38,7 +38,8 @@ class WingPrototype final : public Prototype {
     return std::make_unique<WingPrototype>(name_, wings_count_);
   }
   virtual void Fly(const int distance) const override final {
-    std::cout << "> " << name_ << " flaps its " << wings_count_ << " wings\n";
+    std::cout << "\n> " << name_ << " flaps its " << wings_count_
+              << " wings\n\n";
     Prototype::Fly(distance);
   }
 
@@ -57,8 +58,8 @@ class RocketPrototype final : public Prototype {
     return std::make_unique<RocketPrototype>(name_, jet_length_);
   }
   virtual void Fly(const int distance) const override final {
-    std::cout << "> " << name_ << "'s jet is " << jet_length_
-              << " meters long\n";
+    std::cout << "\n> " << name_ << "'s jet is " << jet_length_
+              << " meters long\n\n";
     Prototype::Fly(distance);
   }
 
@@ -83,9 +84,11 @@ class PrototypeFactory final {
 };
 
 void ClientCode(std::shared_ptr<PrototypeFactory> prototype_factory) {
-  std::cout << "Client asks prototype factory to give him a wing prototype\n";
+  std::cout
+      << "\nClient asks prototype factory to give him a wing prototype\n\n";
   prototype_factory->CreatePrototype(Type::kWing)->Fly(100);
-  std::cout << "Client asks prototype factory to give him a rocket prototype\n";
+  std::cout
+      << "\nClient asks prototype factory to give him a rocket prototype\n\n";
   prototype_factory->CreatePrototype(Type::kRocket)->Fly(150);
 }
 

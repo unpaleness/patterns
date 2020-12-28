@@ -20,7 +20,9 @@ const std::unordered_map<Shape, wchar_t> kShapeMap = {
 
 #ifdef _WIN32
 const std::unordered_map<Color, WORD> kColorMap = {
-    {Color::kDefault, static_cast<WORD>(0)},
+    {Color::kDefault,
+     static_cast<WORD>(FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE |
+                       FOREGROUND_INTENSITY)},
     {Color::kRed, static_cast<WORD>(FOREGROUND_RED | FOREGROUND_INTENSITY)},
     {Color::kGreen, static_cast<WORD>(FOREGROUND_GREEN | FOREGROUND_INTENSITY)},
 };
