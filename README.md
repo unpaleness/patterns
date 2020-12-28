@@ -16,7 +16,7 @@
 
 #### Windows
 
-`cmake --build build` --target {pattern_name}
+`cmake --build build --target {pattern_name}`
 
 #### Unix
 
