@@ -1,13 +1,9 @@
 #include "pattern.hpp"
 
-#ifdef _WIN32
-#include <windows.hpp>
-#endif
+#include <platform.hpp>
 
 int main() {
-#ifdef _WIN32
-  windows::Init();
-#endif
+  platform::Init();
 
   factory_method::run();
 

@@ -1,12 +1,10 @@
 #include <shapes.hpp>
-#ifdef _WIN32
-#include <windows.hpp>
-#endif
 
 #include <array>
 #include <iostream>
-#include <string>
 #include <unordered_map>
+
+#include <platform.hpp>
 
 namespace shapes {
 
@@ -18,21 +16,11 @@ const std::unordered_map<Shape, wchar_t> kShapeMap = {
     {Shape::kTriangle, L'\u25b2'},
 };
 
-#ifdef _WIN32
-const std::unordered_map<Color, WORD> kColorMap = {
-    {Color::kDefault,
-     static_cast<WORD>(FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE |
-                       FOREGROUND_INTENSITY)},
-    {Color::kRed, static_cast<WORD>(FOREGROUND_RED | FOREGROUND_INTENSITY)},
-    {Color::kGreen, static_cast<WORD>(FOREGROUND_GREEN | FOREGROUND_INTENSITY)},
+const std::unordered_map<Color, platform::ConsoleColor> kColorMap = {
+    {Color::kDefault, platform::kDefaultColor},
+    {Color::kRed, platform::kRedColor},
+    {Color::kGreen, platform::kGreenColor},
 };
-#else
-const std::unordered_map<Color, std::wstring> kColorMap = {
-    {Color::kDefault, L"\033[0m"},
-    {Color::kRed, L"\033[31m"},
-    {Color::kGreen, L"\033[32m"},
-};
-#endif
 
 /* 0 4 1
    5   5 - positions of each frame tile
@@ -60,24 +48,15 @@ void Figure::SetFrame(Frame frame) {
   frame_ = frame;
 }
 void Figure::draw() const {
+  const auto last_console_color = platform::GetConsoleColor();
+  platform::SetConsoleColor(kColorMap.at(color_));
+
   const auto& frames = kFrameMap.at(frame_);
-#ifdef _WIN32
-  const auto output_handle = windows::GetOutputHandle();
-  const auto buffer_info = windows::GetConsoleScreenBufferInfo(output_handle);
-  SetConsoleTextAttribute(output_handle,
-                          buffer_info.wAttributes & ~windows::GetColorMask() |
-                              kColorMap.at(color_));
-#else
-  std::wcout << kColorMap.at(color_);
-#endif
   std::wcout << frames.at(0) << frames.at(4) << frames.at(1) << '\n'
              << frames.at(5) << kShapeMap.at(shape_) << frames.at(5) << '\n'
              << frames.at(2) << frames.at(4) << frames.at(3) << '\n';
-#ifdef _WIN32
-  SetConsoleTextAttribute(output_handle, buffer_info.wAttributes);
-#else
-  std::wcout << kColorMap.at(Color::kDefault);
-#endif
+
+  platform::SetConsoleColor(last_console_color);
 }
 
 Square::Square() {
