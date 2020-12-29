@@ -4,7 +4,6 @@
 #include <windows.hpp>
 #else
 #include <string>
-
 #include <unix.hpp>
 #endif
 
