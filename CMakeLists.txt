@@ -11,19 +11,10 @@ else ()
 endif ()
 
 # set binary directory
-set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ../../bin/)
+set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ../../../bin/)
 
 # add sub-directory with common library
 add_subdirectory (common)
 
-set (prefix "patterns/")
-# store all item in dir "patterns" into variable "patterns_dirs"
-file (GLOB patterns_dirs RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} ${prefix}*)
-# loop throw items
-foreach (pattern_dir ${patterns_dirs})
-    # process only if item is a directory
-    if (IS_DIRECTORY ${pattern_dir})
-        message ("Processing ${pattern_dir}")
-        add_subdirectory (${pattern_dir})
-    endif ()
-endforeach ()
+# add sub-directory with patterns types
+add_subdirectory (patterns)

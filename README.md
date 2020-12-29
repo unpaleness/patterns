@@ -14,13 +14,7 @@
 
 ### Single pattern
 
-#### Windows
-
 `cmake --build build --target {pattern_name}`
-
-#### Unix
-
-`cmake --build build/{pattern_name}`
 
 ### All patterns
 

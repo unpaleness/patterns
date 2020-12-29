@@ -1,5 +1,5 @@
 #set include directories
-include_directories (../../common/include)
+include_directories (../../../common/include)
 
 # add executables
 add_executable (builder src/main.cpp src/pattern.cpp)
