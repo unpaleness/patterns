@@ -18,7 +18,7 @@ class Factory {
 
 class RedFactory : public Factory {
  public:
-  RedFactory() { std::cout << "Constructing RedFactory\n"; }
+  RedFactory() { std::wcout << "Constructing RedFactory\n"; }
   virtual std::shared_ptr<const shapes::Triangle> CreateTriangle()
       const override final {
     return std::make_shared<const shapes::RedTriangle>();
@@ -31,7 +31,7 @@ class RedFactory : public Factory {
 
 class GreenFactory : public Factory {
  public:
-  GreenFactory() { std::cout << "Constructing GreenFactory\n"; }
+  GreenFactory() { std::wcout << "Constructing GreenFactory\n"; }
   virtual std::shared_ptr<const shapes::Triangle> CreateTriangle()
       const override final {
     return std::make_shared<const shapes::GreenTriangle>();
@@ -44,22 +44,22 @@ class GreenFactory : public Factory {
 
 void ClientCode(std::shared_ptr<const Factory> factory) {
   const auto square_ptr = factory->CreateSquare();
-  std::cout << "Draw a square\n";
+  std::wcout << "Draw a square\n";
   square_ptr->draw();
   const auto triangle_ptr = factory->CreateTriangle();
-  std::cout << "Draw a triangle\n";
+  std::wcout << "Draw a triangle\n";
   triangle_ptr->draw();
 }
 
 }  // namespace
 
 void run() {
-  std::cout << "\n=== Abstract factory ===\n\n";
-  std::cout << "Client uses red factory\n";
+  std::wcout << "\n=== Abstract factory ===\n\n";
+  std::wcout << "Client uses red factory\n";
   ClientCode(std::make_shared<RedFactory>());
-  std::cout << "Client uses green factory\n";
+  std::wcout << "Client uses green factory\n";
   ClientCode(std::make_shared<GreenFactory>());
-  std::cout << '\n';
+  std::wcout << '\n';
 }
 
 }  // namespace abstract_factory

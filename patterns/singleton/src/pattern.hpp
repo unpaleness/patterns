@@ -3,5 +3,4 @@
 namespace singleton {
 
 void run();
-
 }

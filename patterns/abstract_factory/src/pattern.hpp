@@ -3,5 +3,4 @@
 namespace abstract_factory {
 
 void run();
-
 }

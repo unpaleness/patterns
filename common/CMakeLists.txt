@@ -1,5 +1,9 @@
 #set include directories
-include_directories(include)
+include_directories (include)
 
 # add libraries from source files
-add_library(common src/shapes.cpp)
+if (MSVC)
+    add_library (common src/shapes.cpp src/platform.cpp src/windows.cpp)
+else ()
+    add_library (common src/shapes.cpp src/platform.cpp src/unix.cpp)
+endif ()

@@ -13,9 +13,9 @@ class SquareCreator {
  public:
   virtual ~SquareCreator() {}
   void draw() const {
-    std::cout << "SquareCreator creates a Square\n";
+    std::wcout << "SquareCreator creates a Square\n";
     const auto square_ptr = factory_method();
-    std::cout << "SquareCreator calls method \"draw\" of a Square\n";
+    std::wcout << "SquareCreator calls method \"draw\" of a Square\n";
     square_ptr->draw();
   }
 
@@ -25,7 +25,7 @@ class SquareCreator {
 
 class RedSquareCreator : public SquareCreator {
  public:
-  RedSquareCreator() { std::cout << "Constructing RedSquareCreator\n"; }
+  RedSquareCreator() { std::wcout << "Constructing RedSquareCreator\n"; }
 
  private:
   virtual std::shared_ptr<const shapes::Square> factory_method()
@@ -36,7 +36,7 @@ class RedSquareCreator : public SquareCreator {
 
 class GreenSquareCreator : public SquareCreator {
  public:
-  GreenSquareCreator() { std::cout << "Constructing GreenSquareCreator\n"; }
+  GreenSquareCreator() { std::wcout << "Constructing GreenSquareCreator\n"; }
 
  private:
   virtual std::shared_ptr<const shapes::Square> factory_method()
@@ -46,19 +46,19 @@ class GreenSquareCreator : public SquareCreator {
 };
 
 void ClientCode(std::shared_ptr<const SquareCreator> creator) {
-  std::cout << "Client calls method \"draw\" of SquareCreator\n";
+  std::wcout << "Client calls method \"draw\" of SquareCreator\n";
   creator->draw();
 }
 
 }  // namespace
 
 void run() {
-  std::cout << "\n=== Factory method ===\n\n";
-  std::cout << "Client uses red square creator\n";
+  std::wcout << "\n=== Factory method ===\n\n";
+  std::wcout << "Client uses red square creator\n";
   ClientCode(std::make_shared<RedSquareCreator>());
-  std::cout << "Client uses green square creator\n";
+  std::wcout << "Client uses green square creator\n";
   ClientCode(std::make_shared<GreenSquareCreator>());
-  std::cout << '\n';
+  std::wcout << '\n';
 }
 
 }  // namespace factory_method
