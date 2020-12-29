@@ -11,12 +11,10 @@ namespace platform {
 
 #ifdef _WIN32
 typedef WORD ConsoleColor;
-static const ConsoleColor kDefaultColor = static_cast<WORD>(
-    FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
-static const ConsoleColor kRedColor =
-    static_cast<WORD>(FOREGROUND_RED | FOREGROUND_INTENSITY);
-static const ConsoleColor kGreenColor =
-    static_cast<WORD>(FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+static const ConsoleColor kDefaultColor =
+    FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY;
+static const ConsoleColor kRedColor = FOREGROUND_RED | FOREGROUND_INTENSITY;
+static const ConsoleColor kGreenColor = FOREGROUND_GREEN | FOREGROUND_INTENSITY;
 #else
 typedef std::wstring ConsoleColor;
 static const ConsoleColor kDefaultColor = L"\033[0m";

@@ -23,7 +23,8 @@ CONSOLE_SCREEN_BUFFER_INFO GetConsoleScreenBufferInfo(HANDLE output_handle) {
 }
 
 WORD GetColorMask() {
-  return FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED;
+  return FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED |
+         FOREGROUND_INTENSITY;
 }
 
 }  // namespace windows

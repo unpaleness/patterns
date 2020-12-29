@@ -21,7 +21,7 @@ ConsoleColor GetConsoleColor() {
 #ifdef _WIN32
   const auto output_handle = windows::GetOutputHandle();
   const auto buffer_info = windows::GetConsoleScreenBufferInfo(output_handle);
-  return buffer_info.wAttributes;
+  return buffer_info.wAttributes & windows::GetColorMask();
 #else
   return kDefaultColor;
 #endif
