@@ -27,10 +27,10 @@ const std::unordered_map<Color, WORD> kColorMap = {
     {Color::kGreen, static_cast<WORD>(FOREGROUND_GREEN | FOREGROUND_INTENSITY)},
 };
 #else
-const std::unordered_map<Color, std::string> kColorMap = {
-    {Color::kDefault, "\033[0m"},
-    {Color::kRed, "\033[31m"},
-    {Color::kGreen, "\033[32m"},
+const std::unordered_map<Color, std::wstring> kColorMap = {
+    {Color::kDefault, L"\033[0m"},
+    {Color::kRed, L"\033[31m"},
+    {Color::kGreen, L"\033[32m"},
 };
 #endif
 

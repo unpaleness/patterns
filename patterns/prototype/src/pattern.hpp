@@ -3,5 +3,4 @@
 namespace prototype {
 
 void run();
-
 }
