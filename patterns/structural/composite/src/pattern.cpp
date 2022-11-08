@@ -57,15 +57,17 @@ public:
 
 void ClientCode(const std::shared_ptr<ComponentBase>& component) {
     if (component) {
+        std::wcout << '\n';
         component->print();
+        std::wcout << '\n';
     }
 }
 
 }  // namespace
 
 void run() {
-    std::wcout << "\n=== Composite ===\n\n";
-    std::wcout << "Output the content of component tree using method of the "
+    std::wcout << "\n=== Composite ===\n";
+    std::wcout << "\nOutput the content of component tree using method of the "
                   "root component in this tree:\n";
     auto rootComp = std::make_shared<ComponentContainer>();
     rootComp->add(std::make_shared<ComponentA>());
