@@ -1,7 +1,7 @@
 #include "pattern.hpp"
 
 int main() {
-  prototype::run();
+    prototype::run();
 
-  return 0;
+    return 0;
 }

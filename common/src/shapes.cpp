@@ -36,52 +36,52 @@ const std::unordered_map<Frame, std::array<wchar_t, 6>> kFrameMap = {
 }  // namespace
 
 Figure::Figure() {
-  std::wcout << "Constructing Figure\n";
+    std::wcout << "Constructing Figure\n";
 }
 void Figure::SetShape(Shape shape) {
-  shape_ = shape;
+    shape_ = shape;
 }
 void Figure::SetColor(Color color) {
-  color_ = color;
+    color_ = color;
 }
 void Figure::SetFrame(Frame frame) {
-  frame_ = frame;
+    frame_ = frame;
 }
 void Figure::draw() const {
-  const auto last_console_color = platform::GetConsoleColor();
-  platform::SetConsoleColor(kColorMap.at(color_));
+    const auto last_console_color = platform::GetConsoleColor();
+    platform::SetConsoleColor(kColorMap.at(color_));
 
-  const auto& frames = kFrameMap.at(frame_);
-  std::wcout << frames.at(0) << frames.at(4) << frames.at(1) << '\n'
-             << frames.at(5) << kShapeMap.at(shape_) << frames.at(5) << '\n'
-             << frames.at(2) << frames.at(4) << frames.at(3) << '\n';
+    const auto& frames = kFrameMap.at(frame_);
+    std::wcout << frames.at(0) << frames.at(4) << frames.at(1) << '\n'
+               << frames.at(5) << kShapeMap.at(shape_) << frames.at(5) << '\n'
+               << frames.at(2) << frames.at(4) << frames.at(3) << '\n';
 
-  platform::SetConsoleColor(last_console_color);
+    platform::SetConsoleColor(last_console_color);
 }
 
 Square::Square() {
-  std::wcout << "Constructing Square\n";
-  SetShape(Shape::kSquare);
+    std::wcout << "Constructing Square\n";
+    SetShape(Shape::kSquare);
 }
 RedSquare::RedSquare() {
-  std::wcout << "Constructing RedSquare\n";
-  SetColor(Color::kRed);
+    std::wcout << "Constructing RedSquare\n";
+    SetColor(Color::kRed);
 }
 GreenSquare::GreenSquare() {
-  std::wcout << "Constructing GreenSquare\n";
-  SetColor(Color::kGreen);
+    std::wcout << "Constructing GreenSquare\n";
+    SetColor(Color::kGreen);
 }
 Triangle::Triangle() {
-  std::wcout << "Constructing Triangle\n";
-  SetShape(Shape::kTriangle);
+    std::wcout << "Constructing Triangle\n";
+    SetShape(Shape::kTriangle);
 }
 RedTriangle::RedTriangle() {
-  std::wcout << "Constructing RedTriangle\n";
-  SetColor(Color::kRed);
+    std::wcout << "Constructing RedTriangle\n";
+    SetColor(Color::kRed);
 }
 GreenTriangle::GreenTriangle() {
-  std::wcout << "Constructing GreenTriangle\n";
-  SetColor(Color::kGreen);
+    std::wcout << "Constructing GreenTriangle\n";
+    SetColor(Color::kGreen);
 }
 
 }  // namespace shapes

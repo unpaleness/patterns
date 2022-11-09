@@ -1,11 +1,7 @@
 #include "pattern.hpp"
 
-#include <platform.hpp>
-
 int main() {
-  platform::Init();
+    bridge::run();
 
-  bridge::run();
-
-  return 0;
+    return 0;
 }

@@ -3,9 +3,9 @@
 #include <platform.hpp>
 
 int main() {
-  platform::Init();
+    platform::Init();
 
-  factory_method::run();
+    factory_method::run();
 
-  return 0;
+    return 0;
 }

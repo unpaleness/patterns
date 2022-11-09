@@ -12,13 +12,13 @@ namespace {
 class ComponentBase {
 public:
     virtual ~ComponentBase() = default;
-    virtual std::wstring getData() const = 0;
+    virtual std::string getData() const = 0;
 };
 
 /** Concrete implementation */
 class Component : public ComponentBase {
 public:
-    virtual std::wstring getData() const override { return L"concrete"; }
+    virtual std::string getData() const override { return "concrete"; }
 };
 
 /**
@@ -29,8 +29,8 @@ class DecoratorBase : public ComponentBase {
 public:
     DecoratorBase(const std::shared_ptr<ComponentBase>& newComponent)
         : component(newComponent) {}
-    virtual std::wstring getData() const override {
-        return isValid() ? component->getData() : L"<invalid>";
+    virtual std::string getData() const override {
+        return isValid() ? component->getData() : "<invalid>";
     }
 
 protected:
@@ -45,8 +45,8 @@ class Decorator1 : public DecoratorBase {
 public:
     Decorator1(const std::shared_ptr<ComponentBase>& newComponent)
         : DecoratorBase(newComponent) {}
-    virtual std::wstring getData() const override {
-        return L"(" + DecoratorBase::getData() + L")";
+    virtual std::string getData() const override {
+        return "(" + DecoratorBase::getData() + ")";
     }
 };
 
@@ -55,8 +55,8 @@ class Decorator2 : public DecoratorBase {
 public:
     Decorator2(const std::shared_ptr<ComponentBase>& newComponent)
         : DecoratorBase(newComponent) {}
-    virtual std::wstring getData() const override {
-        return L"[" + DecoratorBase::getData() + L"]";
+    virtual std::string getData() const override {
+        return "[" + DecoratorBase::getData() + "]";
     }
 };
 
@@ -65,28 +65,28 @@ class Decorator3 : public DecoratorBase {
 public:
     Decorator3(const std::shared_ptr<ComponentBase>& newComponent)
         : DecoratorBase(newComponent) {}
-    virtual std::wstring getData() const override {
-        return L"{" + DecoratorBase::getData() + L"}";
+    virtual std::string getData() const override {
+        return "{" + DecoratorBase::getData() + "}";
     }
 };
 
 }  // namespace
 
 void run() {
-    std::wcout << "\n=== Decorator ===\n";
+    std::cout << "\n=== Decorator ===\n";
     auto component = std::make_shared<Component>();
-    std::wcout << "\nOriginal class output:\n";
-    std::wcout << '\n' << component->getData() << '\n';
-    std::wcout << "\nOutputs of various combinations of decorators wrapping "
-                  "original class:\n";
-    std::wcout << '\n'
-               << std::make_shared<Decorator1>(component)->getData() << '\n';
-    std::wcout << '\n'
-               << std::make_shared<Decorator1>(
-                      std::make_shared<Decorator2>(std::make_shared<Decorator3>(
-                          std::make_shared<Decorator2>(component))))
-                      ->getData()
-               << '\n';
+    std::cout << "\nOriginal class output:\n";
+    std::cout << '\n' << component->getData() << '\n';
+    std::cout << "\nOutputs of various combinations of decorators wrapping "
+                 "original class:\n";
+    std::cout << '\n'
+              << std::make_shared<Decorator1>(component)->getData() << '\n';
+    std::cout << '\n'
+              << std::make_shared<Decorator1>(
+                     std::make_shared<Decorator2>(std::make_shared<Decorator3>(
+                         std::make_shared<Decorator2>(component))))
+                     ->getData()
+              << '\n';
 }
 
 }  // namespace decorator

@@ -1,8 +1,5 @@
-#set include directories
-include_directories (../../../common/include)
-
 # add executables
 add_executable (composite src/main.cpp src/pattern.cpp)
 
 # link libraries
-target_link_libraries (composite common)
+target_link_libraries (composite)

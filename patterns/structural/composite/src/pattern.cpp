@@ -1,6 +1,5 @@
 #include "pattern.hpp"
 
-#include <algorithm>
 #include <iostream>
 #include <memory>
 #include <vector>
@@ -13,24 +12,24 @@ namespace {
 class ComponentBase {
 public:
     virtual ~ComponentBase() = default;
-    virtual void print() const { std::wcout << "ComponentBase"; };
+    virtual void print() const { std::cout << "ComponentBase"; };
 };
 
 class ComponentContainer : public ComponentBase {
 public:
     virtual void print() const override {
-        std::wcout << '[';
+        std::cout << '[';
         for (size_t i = 0; i < components.size(); ++i) {
             if (i > 0) {
-                std::wcout << ", ";
+                std::cout << ", ";
             }
             if (components[i]) {
                 components[i]->print();
             } else {
-                std::wcout << "<invalid>";
+                std::cout << "<invalid>";
             }
         }
-        std::wcout << ']';
+        std::cout << ']';
     }
     void add(const std::shared_ptr<ComponentBase>& newComponent) {
         components.push_back(newComponent);
@@ -42,33 +41,33 @@ private:
 
 class ComponentA : public ComponentBase {
 public:
-    virtual void print() const override { std::wcout << "A"; }
+    virtual void print() const override { std::cout << "A"; }
 };
 
 class ComponentB : public ComponentBase {
 public:
-    virtual void print() const override { std::wcout << "B"; }
+    virtual void print() const override { std::cout << "B"; }
 };
 
 class ComponentC : public ComponentBase {
 public:
-    virtual void print() const override { std::wcout << "C"; }
+    virtual void print() const override { std::cout << "C"; }
 };
 
 void ClientCode(const std::shared_ptr<ComponentBase>& component) {
     if (component) {
-        std::wcout << '\n';
+        std::cout << '\n';
         component->print();
-        std::wcout << '\n';
+        std::cout << '\n';
     }
 }
 
 }  // namespace
 
 void run() {
-    std::wcout << "\n=== Composite ===\n";
-    std::wcout << "\nOutput the content of component tree using method of the "
-                  "root component in this tree:\n";
+    std::cout << "\n=== Composite ===\n";
+    std::cout << "\nOutput the content of component tree using method of the "
+                 "root component in this tree:\n";
     auto rootComp = std::make_shared<ComponentContainer>();
     rootComp->add(std::make_shared<ComponentA>());
     rootComp->add(std::make_shared<ComponentB>());

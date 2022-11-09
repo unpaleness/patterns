@@ -17,9 +17,9 @@ namespace {
  */
 
 class Implementation {
- public:
-  virtual ~Implementation() {}
-  virtual std::wstring OperationImplementation() const = 0;
+public:
+    virtual ~Implementation() {}
+    virtual std::string OperationImplementation() const = 0;
 };
 
 /**
@@ -27,16 +27,18 @@ class Implementation {
  * интерфейс Реализации с использованием API этой платформы.
  */
 class ConcreteImplementationA final : public Implementation {
- public:
-  std::wstring OperationImplementation() const override {
-    return L"ConcreteImplementationA: Here's the result on the platform A.\n\n";
-  }
+public:
+    std::string OperationImplementation() const override {
+        return "ConcreteImplementationA: Here's the result on the platform "
+               "A.\n\n";
+    }
 };
 class ConcreteImplementationB final : public Implementation {
- public:
-  std::wstring OperationImplementation() const override {
-    return L"ConcreteImplementationB: Here's the result on the platform B.\n\n";
-  }
+public:
+    std::string OperationImplementation() const override {
+        return "ConcreteImplementationB: Here's the result on the platform "
+               "B.\n\n";
+    }
 };
 
 /**
@@ -46,34 +48,34 @@ class ConcreteImplementationB final : public Implementation {
  */
 
 class Abstraction {
-  /**
-   * @var Implementation
-   */
- protected:
-  std::shared_ptr<const Implementation> implementation_;
+    /**
+     * @var Implementation
+     */
+protected:
+    std::shared_ptr<const Implementation> implementation_;
 
- public:
-  Abstraction(std::shared_ptr<const Implementation> implementation)
-      : implementation_(implementation) {}
+public:
+    Abstraction(std::shared_ptr<const Implementation> implementation)
+        : implementation_(implementation) {}
 
-  virtual ~Abstraction() {}
+    virtual ~Abstraction() {}
 
-  virtual std::wstring Operation() const {
-    return L"Abstraction: Base operation with:\n" +
-           this->implementation_->OperationImplementation();
-  }
+    virtual std::string Operation() const {
+        return "Abstraction: Base operation with:\n" +
+               this->implementation_->OperationImplementation();
+    }
 };
 /**
  * Можно расширить Абстракцию без изменения классов Реализации.
  */
 class ExtendedAbstraction final : public Abstraction {
- public:
-  ExtendedAbstraction(std::shared_ptr<const Implementation> implementation)
-      : Abstraction(implementation) {}
-  std::wstring Operation() const override {
-    return L"ExtendedAbstraction: Extended operation with:\n" +
-           this->implementation_->OperationImplementation();
-  }
+public:
+    ExtendedAbstraction(std::shared_ptr<const Implementation> implementation)
+        : Abstraction(implementation) {}
+    std::string Operation() const override {
+        return "ExtendedAbstraction: Extended operation with:\n" +
+               this->implementation_->OperationImplementation();
+    }
 };
 
 /**
@@ -83,9 +85,9 @@ class ExtendedAbstraction final : public Abstraction {
  * комбинацию абстракции и реализации.
  */
 void ClientCode(std::shared_ptr<const Abstraction> abstraction) {
-  // ...
-  std::wcout << abstraction->Operation();
-  // ...
+    // ...
+    std::cout << abstraction->Operation();
+    // ...
 }
 /**
  * Клиентский код должен работать с любой предварительно сконфигурированной
@@ -95,15 +97,17 @@ void ClientCode(std::shared_ptr<const Abstraction> abstraction) {
 }  // namespace
 
 void run() {
-  std::wcout << "\n=== Bridge ===\n\n";
+    std::cout << "\n=== Bridge ===\n\n";
 
-  std::shared_ptr<const Implementation> implementation = std::make_shared<const ConcreteImplementationA>();
-  std::shared_ptr<const Abstraction> abstraction = std::make_shared<const Abstraction>(implementation);
-  ClientCode(abstraction);
+    std::shared_ptr<const Implementation> implementation =
+        std::make_shared<const ConcreteImplementationA>();
+    std::shared_ptr<const Abstraction> abstraction =
+        std::make_shared<const Abstraction>(implementation);
+    ClientCode(abstraction);
 
-  implementation = std::make_shared<const ConcreteImplementationB>();
-  abstraction = std::make_shared<const ExtendedAbstraction>(implementation);
-  ClientCode(abstraction);
+    implementation = std::make_shared<const ConcreteImplementationB>();
+    abstraction = std::make_shared<const ExtendedAbstraction>(implementation);
+    ClientCode(abstraction);
 }
 
 }  // namespace bridge

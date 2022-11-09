@@ -1,7 +1,7 @@
 #include "pattern.hpp"
 
 int main() {
-  singleton::run();
+    singleton::run();
 
-  return 0;
+    return 0;
 }

@@ -22,29 +22,29 @@ enum class Beverage : uint8_t {
 
 namespace Helper {
 
-static std::wstring sizeToWString(const Size size) {
+static std::string sizeToWString(const Size size) {
     switch (size) {
         case Size::Small:
-            return L"Small";
+            return "Small";
         case Size::Medium:
-            return L"Medium";
+            return "Medium";
         case Size::Large:
-            return L"Large";
+            return "Large";
         default:
-            return L"<Invalid size>";
+            return "<Invalid size>";
     }
 }
 
-static std::wstring beverageToWString(const Beverage beverage) {
+static std::string beverageToWString(const Beverage beverage) {
     switch (beverage) {
         case Beverage::None:
-            return L"None";
+            return "None";
         case Beverage::Espresso:
-            return L"Espresso";
+            return "Espresso";
         case Beverage::Capuccino:
-            return L"Capuccino";
+            return "Capuccino";
         default:
-            return L"<Invalid beverage>";
+            return "<Invalid beverage>";
     }
 }
 
@@ -56,9 +56,9 @@ public:
     Cup(const Size newSize, const Beverage newBeverage)
         : size(newSize), beverage(newBeverage) {}
     void setBeverage(const Beverage newBeverage) { beverage = newBeverage; }
-    std::wstring toString() const {
-        return L"{size: " + Helper::sizeToWString(size) + L", beverage: " +
-               Helper::beverageToWString(beverage) + L"}";
+    std::string toString() const {
+        return "{size: " + Helper::sizeToWString(size) +
+               ", beverage: " + Helper::beverageToWString(beverage) + "}";
     }
 
 private:
@@ -79,22 +79,22 @@ class CoffeeMachine {
 public:
     void addCup(const std::shared_ptr<Cup>& newCup) {
         cup = newCup;
-        std::wcout << L"CoffeeMachine: a new cup inserted: " << cup->toString()
-                   << L"\n";
+        std::cout << "CoffeeMachine: a new cup inserted: " << cup->toString()
+                  << "\n";
     }
 
     void brew(const Beverage newBeverage) {
         if (!cup) {
-            std::wcout << L"CoffeeMachine: there's no cup inserted\n";
+            std::cout << "CoffeeMachine: there's no cup inserted\n";
             return;
         }
         cup->setBeverage(newBeverage);
-        std::wcout << L"CoffeeMachine: brewed " << cup->toString() << L"\n";
+        std::cout << "CoffeeMachine: brewed " << cup->toString() << "\n";
     }
 
     std::shared_ptr<Cup> removeCup() {
         if (!cup) {
-            std::wcout << L"CoffeeMachine: no cup\n";
+            std::cout << "CoffeeMachine: no cup\n";
             return nullptr;
         }
         auto returnCup = cup;
@@ -122,20 +122,19 @@ public:
 }  // namespace
 
 void run() {
-    std::wcout << L"\n=== Facade ===\n";
-    std::wcout
-        << L"\nClient code uses facade class CoffeeMaker to brew coffee. "
-           "Coffee itself uses other classes to implement each step.\n";
+    std::cout << "\n=== Facade ===\n";
+    std::cout << "\nClient code uses facade class CoffeeMaker to brew coffee. "
+                 "Coffee itself uses other classes to implement each step.\n";
     auto facadeToBrewCoffee = std::make_shared<FacadeToBrewCoffee>();
-    std::wcout << L"\nBrewing cup 1\n";
+    std::cout << "\nBrewing cup 1\n";
     auto cup1 = facadeToBrewCoffee->brew(Size::Medium, Beverage::Espresso);
-    std::wcout << L"\nCup 1: " << cup1->toString() << L"\n";
-    std::wcout << L"\nBrewing cup 2\n";
+    std::cout << "\nCup 1: " << cup1->toString() << "\n";
+    std::cout << "\nBrewing cup 2\n";
     auto cup2 = facadeToBrewCoffee->brew(Size::Small, Beverage::Capuccino);
-    std::wcout << L"\nCup 2: " << cup2->toString() << L"\n";
-    std::wcout << L"\nBrewing cup 3\n";
+    std::cout << "\nCup 2: " << cup2->toString() << "\n";
+    std::cout << "\nBrewing cup 3\n";
     auto cup3 = facadeToBrewCoffee->brew(Size::Large, Beverage::Capuccino);
-    std::wcout << L"\nCup 3: " << cup3->toString() << L"\n";
+    std::cout << "\nCup 3: " << cup3->toString() << "\n";
 }
 
 }  // namespace facade

@@ -3,9 +3,9 @@
 #include <platform.hpp>
 
 int main() {
-  platform::Init();
+    platform::Init();
 
-  builder::run();
+    builder::run();
 
-  return 0;
+    return 0;
 }

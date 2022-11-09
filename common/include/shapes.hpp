@@ -7,51 +7,51 @@ enum class Color { kDefault, kRed, kGreen };
 enum class Frame { kNone, kSingle, kDouble };
 
 class Figure {
- public:
-  Figure();
-  void SetShape(Shape shape);
-  void SetColor(Color color);
-  void SetFrame(Frame frame);
-  void draw() const;
+public:
+    Figure();
+    void SetShape(Shape shape);
+    void SetColor(Color color);
+    void SetFrame(Frame frame);
+    void draw() const;
 
- private:
-  Shape shape_{Shape::kNone};
-  Color color_{Color::kDefault};
-  Frame frame_{Frame::kNone};
+private:
+    Shape shape_{Shape::kNone};
+    Color color_{Color::kDefault};
+    Frame frame_{Frame::kNone};
 };
 
 class Square : protected Figure {
- public:
-  using Figure::draw;
+public:
+    using Figure::draw;
 
-  Square();
+    Square();
 };
 
 class RedSquare : public Square {
- public:
-  RedSquare();
+public:
+    RedSquare();
 };
 
 class GreenSquare : public Square {
- public:
-  GreenSquare();
+public:
+    GreenSquare();
 };
 
 class Triangle : protected Figure {
- public:
-  using Figure::draw;
+public:
+    using Figure::draw;
 
-  Triangle();
+    Triangle();
 };
 
 class RedTriangle : public Triangle {
- public:
-  RedTriangle();
+public:
+    RedTriangle();
 };
 
 class GreenTriangle : public Triangle {
- public:
-  GreenTriangle();
+public:
+    GreenTriangle();
 };
 
 }  // namespace shapes

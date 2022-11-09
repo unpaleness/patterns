@@ -1,11 +1,7 @@
 #include "pattern.hpp"
 
-#include <platform.hpp>
-
 int main() {
-  platform::Init();
+    composite::run();
 
-  composite::run();
-
-  return 0;
+    return 0;
 }
