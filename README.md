@@ -1,5 +1,10 @@
 # Software design patterns in C++
 
+## Pre-requirements
+
+cmake
+llvm
+
 ## Generate
 
 ### Unix
